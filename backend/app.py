@@ -3,11 +3,9 @@ import google.generativeai as genai
 
 app = Flask(__name__, template_folder="../templates", static_folder="../static")
 
-# Initialize Google API (Replace with your API key)
-genai.configure(api_key="AIzaSyCUv3sCbii6iwEzWNuKhVvX3CPh68zEJOc")
+genai.configure(api_key="API")
 
-# Load the model (Gemini or any other model you're using)
-model = genai.GenerativeModel("gemini-pro")  # Change model name if needed
+model = genai.GenerativeModel("gemini-pro") 
 
 @app.route("/")
 def index():
@@ -21,7 +19,7 @@ def chat():
     try:
         user_message = "Suggest the best products based on the following user preference: " +  user_message
 
-        response = model.generate_content(user_message)  # Correct method
+        response = model.generate_content(user_message)
         bot_reply = response.text if response.text else "I didn't understand that."
         #bot_reply = bot_reply.replace('**', '\n\n').replace('* ', '\n')
     except Exception as e:
